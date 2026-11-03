@@ -1,0 +1,9 @@
+.env
+data/*
+!data/.gitkeep
+chroma_db/
+faiss_index/
+__pycache__/
+venv/
+day3/emb_model/
+.idea/
