@@ -22,6 +22,8 @@ async def upload_doc(file: UploadFile = File(...)):
 @app.post("/day3/rag/ask")
 async def rag_ask(question:str):
     return await rag_answer(question)
+from day4.main import router as day4_router
+app.include_router(day4_router,prefix="/day4")
 @app.get("/")
 async def root():
     return {"status":"ok","days":["day1","day2","day3"]}
