@@ -3,8 +3,9 @@ from fastapi.responses import JSONResponse
 from .qa import hybrid_qa
 from .hybird_search import hybrid_search
 from day3.loader import load_and_split
+from pydantic import BaseModel
 from day3.vector_store import add_documents
-router = APIRouter(prefix="/day4", tags=["day4"])#路由分组
+router = APIRouter(tags=["day4"])#路由分组
 @router.post("/upload")
 async def upload(file: UploadFile = File(...)):
     file_path=f"./data/{file.filename}"#保存上传文件到本地
@@ -24,8 +25,10 @@ async def upload(file: UploadFile = File(...)):
         "filename":file.filename,
         "chunks":len(chunks),
     })
+class AskRequest(BaseModel):
+    question: str
 @router.post("/ask")
-async def ask(question:str):
-    result=await hybrid_qa(question)
+async def ask(req:AskRequest):
+    result=await hybrid_qa(req.question)
     return result
 
