@@ -6,7 +6,7 @@
 - day4: 混合检索（BM25 + 向量）
 - day5: Streamlit 前端
 - day6: 多轮对话（session_id 隔离）
-- day7: 工程收尾（本日）
+- day7: 工程收尾
 # 启动
 pip install -r requirements.txt
 cp .env.example .env  # 填 Key
